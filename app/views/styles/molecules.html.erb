@@ -1,12 +1,16 @@
 <main class="content-wrapper">
   <div>
+    <h1>Style Guide</h1>
+    <p>
+      Our Style Guide is based upon the principles of Atomic design, a methodology composed of five distinct stages working together to create interface design systems in a more deliberate and hierarchical manner.
+    </p>
     <nav>
       <ul class="sub-navigation">
-        <li><a href="styleguide.html">Atoms</a></li>
-        <li><a href="molecules.html" class="current">Molecules</a></li>
-        <li><a href="organisms.html">Organisms</a></li>
-        <li><a href="templates.html">Templates</a></li>
-        <li><a href="#pages">Pages</a></li>
+        <li><%= link_to('Atoms', '/styles/atoms') %></li>
+        <li><a href="/styles/molecules" class="current">Molecules</a></li>
+        <li><%= link_to('Organisms', '/styles/organisms') %></li>
+        <li><%= link_to('Templates', '/styles/templates') %></li>
+        <li><%= link_to('Pages', '/styles/pages') %></li>
       </ul>
     </nav>
     <h1>Molecules</h1>
@@ -21,7 +25,7 @@
     </p>
      <nav>
       <ol class="ordered-navigation">
-        <li><a href="#card">Card</a></li>
+        <li><%= link_to('Card', '/styles/molecules#card') %></li>
         <li><a href="#logo">Logo</a></li>
         <li><a href="#search">Search</a></li>
         <li><a href="#navigation">Navigation</a></li>
