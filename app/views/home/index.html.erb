@@ -16,9 +16,15 @@
   <div class="content-wrapper">
     <h2>Some ideas</h2>
     <ul class="bare-list float-grid css-grid">
-      <%= render(partial: 'styles/idea_card') %>
-      <%= render(partial: 'styles/idea_card') %>
-      <%= render(partial: 'styles/idea_card') %>
+      <%= render(partial: 'styles/idea_card',locals: {
+        title: 'Title1'
+      }) %>
+      <%= render(partial: 'styles/idea_card',locals: {
+        title: 'Title2'
+      }) %>
+      <%= render(partial: 'styles/idea_card',locals: {
+        title: 'Title3'
+      }) %>
     </ul>
   </div>
   <div class="see-more">
