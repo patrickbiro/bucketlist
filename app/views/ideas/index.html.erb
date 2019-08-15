@@ -1,0 +1,19 @@
+<main>
+  <div class="content-wrapper">
+    <h1>Results for "everything"</h1>
+  </div>
+  <div class="content-wrapper">
+    <ul class="bare-list float-grid css-grid">
+      <% ["Swim with turtles", "See the Northern Lights", "Cycling across the Alps", "Make homemade pasta","Test drive a Lamborghini","Write a short story"].each do |item| %>
+      <li>
+      <%= render(partial: 'idea_card', locals: {
+        title: item
+      }) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="see-more">
+    <button class="btn" type="button" data-more="true">See more</button>
+  </div>
+</main>
