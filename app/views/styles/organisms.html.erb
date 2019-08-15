@@ -6,11 +6,26 @@
     </p>
     <nav>
       <ul class="sub-navigation">
-        <li><%= link_to('Atoms', '/styles/atoms') %></li>
-        <li><%= link_to('Molecules', '/styles/molecules') %></li>
-        <li><a href="/styles/organisms" class="current">Organisms</a></li>
-        <li><%= link_to('Templates', '/styles/templates') %></li>
-        <li><%= link_to('Pages', '/styles/pages') %></li>
+        <%= render(partial: 'sub_nav_item', locals: {
+          title: "Atoms",
+          uri: "/styles/atoms",
+          current: false
+        }) %>
+        <%= render(partial: 'sub_nav_item', locals: {
+          title: "Molecules",
+          uri: "/styles/molecules",
+          current: false
+        }) %>
+        <%= render(partial: 'sub_nav_item', locals: {
+          title: "Organisms",
+          uri: "/styles/organisms",
+          current: true
+        }) %>
+        <%= render(partial: 'sub_nav_item', locals: {
+          title: "Templates",
+          uri: "/styles/templates",
+          current: false
+        }) %>
       </ul>
     </nav>
     <h1>Organisms</h1>
@@ -23,7 +38,7 @@
     <p>
       Building up from molecules to organisms encourages creating standalone, portable, reusable components.
     </p>
-     <nav>
+    <nav>
       <ol class="ordered-navigation">
         <li><a href="#filters">Filters</a></li>
         <li><a href="#ideas">Ideas</a></li>
@@ -59,132 +74,14 @@
     <h2>02. Ideas</h2>
     <div>
       <ul class="bare-list float-grid css-grid">
-        <li>
-          <div class="card">
-            <div class="card__thumb">
-              <a href="ideas/northern-lights.html">
-                <img src="http://fpoimg.com/255x170"
-                     alt="Northern lights over mountain covered in snow">
-              </a>
-              <div class="card__intro">
-                <h4 class="card__title">See the Northern lights</h4>
-                <span>1,598 have done this</span>
-              </div>
-            </div>
-            <div class="card__footer">
-              <button class="card__btn card__like delta" data-like="see-the-northern-lights">
-                <svg class="icon-heart" role="presentation">
-                  <use xlink:href="images/icons-defs.svg#heart"></use>
-                </svg>
-                Like
-              </button>
-              <button class="card__btn card__add delta" data-addGoal="see-the-northern-lights">
-                <svg class="icon-pluss" role="presentation">
-                  <use xlink:href="images/icons-defs.svg#pluss"></use>
-                </svg>
-                Add Goal
-              </button>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="card">
-            <div class="card__thumb">
-              <a href="ideas/one-example-idea.html">
-                <img src="http://fpoimg.com/255x170"
-                     alt="Placeholder image for templating">
-              </a>
-              <div class="card__intro">
-                <h4 class="card__title">Something anything onething much longer text something</h4>
-                <span>109,598,324 are doing this</span>
-              </div>
-            </div>
-          </div>
-          <div class="card__footer">
-            <button class="card__btn card__like delta" data-like="something-anything-onething-much-longer-text-something">
-              <svg class="icon-heart" role="presentation">
-                <use xlink:href="images/icons-defs.svg#heart"></use>
-              </svg>
-              Like
-            </button>
-            <button class="card__btn card__add delta" data-addGoal="something-anything-onething-much-longer-text-something">
-              <svg class="icon-pluss" role="presentation">
-                <use xlink:href="images/icons-defs.svg#pluss"></use>
-              </svg>
-              Add Goal
-            </button>
-          </div>
-        </li>
-        <li>
-          <div class="card">
-            <div class="card__thumb">
-              <a href="ideas/one-example-idea.html">
-                <img src="http://fpoimg.com/255x170"
-                     alt="Placeholder image for templating">
-              </a>
-              <div class="card__intro">
-                <h4 class="card__title">Short</h4>
-                <span>1 is doing this</span>
-              </div>
-            </div>
-            <div class="card__footer">
-              <button class="card__btn card__like delta" data-like="see-the-northern-lights">
-                <svg class="icon-heart" role="presentation">
-                  <use xlink:href="assets/icons/icons-defs.svg#heart"></use>
-                </svg>
-                Like
-              </button>
-              <button class="card__btn card__add delta" data-addGoal="see-the-northern-lights">
-                <svg class="icon-pluss" role="presentation">
-                  <use xlink:href="assets/icons/icons-defs.svg#pluss"></use>
-                </svg>
-                Add Goal
-              </button>
-            </div>
-          </div>
-          <div class="card__footer">
-            <button class="card__btn card__like delta" data-like="see-the-northern-lights">
-              <svg class="icon-heart" role="presentation">
-                <use xlink:href="images/icons-defs.svg#heart"></use>
-              </svg>
-              Like
-            </button>
-            <button class="card__btn card__add delta" data-addGoal="see-the-northern-lights">
-              <svg class="icon-pluss" role="presentation">
-                <use xlink:href="images/icons-defs.svg#pluss"></use>
-              </svg>
-              Add Goal
-            </button>
-          </div>
-        </li>
-        <li>
-          <div class="card">
-            <div class="card__thumb">
-              <a href="ideas/one-example-idea.html">
-                <img src="http://fpoimg.com/255x170"
-                     alt="Placeholder image for templating">
-              </a>
-              <div class="card__intro">
-                <h4 class="card__title">Short</h4>
-                <span>1 has done this</span>
-              </div>
-            </div>
-            <div class="card__footer">
-              <button class="card__btn card__like delta" data-like="see-the-northern-lights">
-                <svg class="icon-heart" role="presentation">
-                  <use xlink:href="images/icons-defs.svg#heart"></use>
-                </svg>
-                Like
-              </button>
-              <button class="card__btn card__add delta" data-addGoal="see-the-northern-lights">
-                <svg class="icon-pluss" role="presentation">
-                  <use xlink:href="images/icons-defs.svg#pluss"></use>
-                </svg>
-                Add Goal
-              </button>
-            </div>
-          </div>
-        </li>
+
+          <% ["Swim with turtles", "See the Northern Lights", "Make homemade pasta", "Make homemade pasta"].each do |item| %>
+          <li>
+          <%= render(partial: 'idea_card', locals: {
+            title: item
+          }) %>
+          </li>
+          <% end %>
       </ul>
     </div>
   </section>
@@ -357,9 +254,9 @@
           <input id="new-password" class="input-group__field" type="password" name="new-password">
         </div>
         <div class="input-group input-group--horizontal">
-            <label class="input-group__label" for="repeat-password">Confirm new password</label>
-            <input id="repeat-password" class="input-group__field" type="password" name="repeat-password">
-          </div>
+          <label class="input-group__label" for="repeat-password">Confirm new password</label>
+          <input id="repeat-password" class="input-group__field" type="password" name="repeat-password">
+        </div>
         <%= render(partial: 'prompt', locals: {
           label: 'Create new password'
         }) %>

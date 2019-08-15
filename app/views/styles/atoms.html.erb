@@ -6,11 +6,26 @@
     </p>
     <nav>
       <ul class="sub-navigation">
-        <li ><a href="/styles/atoms" class="current">Atoms</a></li>
-        <li><%= link_to('Molecules', '/styles/molecules') %></li>
-        <li><%= link_to('Organisms', '/styles/organisms') %></li>
-        <li><%= link_to('Templates', '/styles/templates') %></li>
-        <li><%= link_to('Pages', '/styles/pages') %></li>
+        <%= render(partial: 'sub_nav_item', locals: {
+          title: "Atoms",
+          uri: "/styles/atoms",
+          current: true
+        }) %>
+        <%= render(partial: 'sub_nav_item', locals: {
+          title: "Molecules",
+          uri: "/styles/molecules",
+          current: false
+        }) %>
+        <%= render(partial: 'sub_nav_item', locals: {
+          title: "Organisms",
+          uri: "/styles/organisms",
+          current: false
+        }) %>
+        <%= render(partial: 'sub_nav_item', locals: {
+          title: "Templates",
+          uri: "/styles/templates",
+          current: false
+        }) %>
       </ul>
     </nav>
     <h2>Atoms</h2>
