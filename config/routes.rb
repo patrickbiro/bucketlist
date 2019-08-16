@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'home#index'
-  
+
   get 'home', to:'home#index'
 
   get 'home/index'
@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get 'styles/organisms'
 
   get 'ideas/index'
+
+  get  '/ideas/new'
+
+  post '/ideas/create'
 
   get 'styleguide', to:'styles#atoms'
 
