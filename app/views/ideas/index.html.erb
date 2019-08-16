@@ -4,10 +4,10 @@
   </div>
   <div class="content-wrapper">
     <ul class="bare-list float-grid css-grid">
-      <% ["Swim with turtles", "See the Northern Lights", "Cycling across the Alps", "Make homemade pasta","Test drive a Lamborghini","Write a short story"].each do |item| %>
+      <% @ideas.each do |idea| %>
       <li>
       <%= render(partial: 'idea_card', locals: {
-        title: item
+        title: idea.title
       }) %>
       </li>
       <% end %>
