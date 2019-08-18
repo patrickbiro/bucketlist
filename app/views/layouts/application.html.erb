@@ -23,7 +23,11 @@
             <ul class="main-navigation">
               <li><a href="#nolink">Inspiration</a></li>
               <li><a href="#nolink">Sign Up</a></li>
-              <li><a href="#nolink">Log In</a></li>
+              <%= render(partial: 'styles/sub_nav_item', locals: {
+                title: "Account",
+                uri: account_ideas_path,
+                current: false
+              }) %>
             </ul>
           </nav>
         </div>
