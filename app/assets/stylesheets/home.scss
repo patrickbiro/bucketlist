@@ -1322,6 +1322,7 @@ table {
   border-radius: 3px;
   margin: 0;
   transition: all 0.1s ease-in-out;
+
 }
 
 .card:hover {
@@ -1332,6 +1333,7 @@ table {
   /* Set the context for .card__intro */
   position: relative;
   display: block;
+
 }
 
 /*
@@ -1350,6 +1352,8 @@ table {
     Display: block removes the gap.
   */
   display: block;
+  height: 206px;
+  object-fit: cover;
   /* Make the image responsive */
   width: 100%;
   /* Set border radius here as well, because it won't inherit from .card */

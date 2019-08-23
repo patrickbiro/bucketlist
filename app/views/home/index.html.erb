@@ -19,7 +19,7 @@
       <% ["Swim with turtles", "See the Northern Lights", "Make homemade pasta", "Make homemade pasta"].each do |item| %>
       <li>
       <%= render(partial: 'idea_card', locals: {
-        title: idea.title,
+        title: item,
         done_count: 24,
         photo_url: "http://fpoimg.com/255x170"
       }) %>
