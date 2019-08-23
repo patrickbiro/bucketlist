@@ -24,4 +24,17 @@ class IdeasTest < ApplicationSystemTestCase
     assert page.has_content?('See a giraffe in the wild')
     #assert_equal 2, page.all(class: 'card__thumb').count
   end
+
+  test 'test idea edit' do
+     idea = Idea.new
+     idea.save!
+     visit('/ideas/'+idea.id.to_s+'/edit')
+     fill_in 'title', with: 'See the Matterhorn'
+     fill_in 'done_count', with: 159
+     click_on 'Update idea'
+     click_on 'See the Matterhorn'
+     assert page.has_content?('See the Matterhorn')
+     assert page.has_content?('159 have done that')
+
+   end
 end

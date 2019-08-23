@@ -1,16 +1,16 @@
 <div class="card">
   <div class="card__thumb">
-    <a href="<%= idea_path(idea) %>">
+    <%= link_to(show_idea_path(idea)) do %>
       <% if(idea.photo_url.nil?) %>
         <%= image_tag("http://fpoimg.com/255x170", alt: "a card image") %>
       <% else %>
         <%= image_tag(idea.photo_url, alt: "a card image") %>
       <% end %>
-    </a>
     <div class="card__intro">
       <h4 class="card__title"><%= idea.title %></h4>
       <span><%= idea.done_count %> have done this</span>
     </div>
+    <% end %>
   </div>
   <div class="card__footer">
     <button class="btn delta" type="submit">
