@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card__thumb">
-    <a href="ideas/northern-lights.html">
+    <a href="<%= idea_path(idea) %>">
       <% if(idea.photo_url.nil?) %>
         <%= image_tag("http://fpoimg.com/255x170", alt: "a card image") %>
       <% else %>

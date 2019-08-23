@@ -23,11 +23,15 @@ Rails.application.routes.draw do
 
   get 'ideas/index'
 
+
+
   #Create the route to the page new Ideas and then create a route when posting new Idea
   get  '/ideas/new'
 
   post '/ideas/create'
   #-------------------------
+
+  get '/ideas/:id/', to: 'ideas#show', as: 'show_idea'
 
   get 'styleguide', to:'styles#atoms'
 
