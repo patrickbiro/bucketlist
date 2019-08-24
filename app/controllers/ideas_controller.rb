@@ -2,7 +2,7 @@ class IdeasController < ApplicationController
   def index
     @search_term = params[:search_input]
     logger.info("The search term is #{@search_term}.")
-    @ideas = Idea.all
+    @ideas = Idea.search(@search_term)
     logger.info("The ideas existing are #{@ideas}.")
   end
 

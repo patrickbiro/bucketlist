@@ -37,4 +37,10 @@ class IdeasTest < ApplicationSystemTestCase
      assert page.has_content?('159 have done that')
 
    end
+
+   test 'test idea index search without any idea' do
+      Idea.all.delete_all
+      visit('/ideas/index')
+      assert page.has_content?('No ideas found!')
+    end
 end

@@ -59,4 +59,47 @@ class IdeaTest < ActiveSupport::TestCase
     refute_equal(idea.updated_at, first_updated_at)
   end
 
+  #TEST search function of Idea Model
+  test 'search function, one matching result' do
+    idea = Idea.new
+    idea.title = 'Stand at the top of the Empire State Building'
+    idea.save!
+    assert_equal(Idea.search('the top').length, 1)
+  end
+
+  test 'search function, no matching results' do
+    idea = Idea.new
+    idea.title = 'Stand at the top of the Empire State Building'
+    idea.save!
+    assert_equal(Idea.search('snorkelling').length, 0)
+  end
+
+  test 'search function, two matching results' do
+    idea = Idea.new
+    idea.title = 'Stand at the top of the Empire State Building'
+    idea.save!
+
+    idea2 = Idea.new
+    idea2.title = 'Stand on the pyramids'
+    idea2.save!
+
+    assert_equal(Idea.search('Stand').length, 2)
+  end
+
+  #TEST most_recent function of Idea Model
+  test 'most_recent function. No Idea records exist' do
+    Idea.all.delete_all
+    assert_equal(Idea.most_recent().length, 0)
+  end
+
+  test 'most_recent function. Two Idea records exist.' do
+    Idea.all.delete_all
+    idea1 = Idea.new
+    idea1.save!
+    idea2 = Idea.new
+    idea2.save!
+    assert_equal(Idea.most_recent().length, 2)
+    assert_equal(Idea.most_recent().first.created_at, idea2.created_at)
+  end
+
 end
