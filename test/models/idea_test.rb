@@ -99,7 +99,19 @@ class IdeaTest < ActiveSupport::TestCase
     idea2 = Idea.new
     idea2.save!
     assert_equal(Idea.most_recent().length, 2)
-    assert_equal(Idea.most_recent().first.created_at, idea2.created_at)
+    assert_equal(Idea.most_recent().first, idea2)
+  end
+
+  test 'most_recent function. Six Idea records exist.' do
+    Idea.all.delete_all
+    6.times do |i|
+      idea = Idea.new
+      idea.title = "Exciting Idea #{i+1}"
+      idea.save!
+    end
+
+    assert_equal(Idea.most_recent().length, 3)
+    assert_equal(Idea.most_recent().first.title, "Exciting Idea 6")
   end
 
 end
