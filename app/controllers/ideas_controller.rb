@@ -14,10 +14,7 @@ class IdeasController < ApplicationController
   end
 
   def create
-    idea = Idea.new
-    idea.title = params[:title]
-    idea.done_count = params[:done_count]
-    idea.photo_url = params[:photo_url]
+    idea = Idea.new(idea_params)
     idea.save!
     redirect_to(account_ideas_path)
   end
@@ -33,13 +30,14 @@ class IdeasController < ApplicationController
 
     # retrieve the instance using the identifier
     idea = Idea.find(id)
-
-    idea.title = params[:title]
-    idea.done_count = params[:done_count]
-    idea.photo_url = params[:photo_url]
-    idea.save!
+    idea.update(idea_params)
     redirect_to(account_ideas_path)
   end
 
+  private
+
+  def idea_params
+    params.permit(:title, :done_count, :photo_url, :name_of_user, :description)
+  end
 
 end
