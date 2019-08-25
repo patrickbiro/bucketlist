@@ -114,4 +114,28 @@ class IdeaTest < ActiveSupport::TestCase
     assert_equal(Idea.most_recent().first.title, "Exciting Idea 6")
   end
 
+  #Test search function of Idea Model allowing to search description
+  test 'search function with description, Only description match' do
+    idea = Idea.new
+    idea.title = 'Surfing in Portugal'
+    idea.description = 'See what Atlantic coast waves are like!'
+    idea.save!
+
+    assert_equal(Idea.search('coast').length, 1)
+  end
+
+  test 'Description and title match' do
+    idea = Idea.new
+    idea.title = 'Overnight hike in Switzerland'
+    idea.description = 'Stay in a Swiss refuge in the mountains.'
+    idea.save!
+
+    idea2 = Idea.new
+    idea2.title = 'Hike the mountains in Italy'
+    idea2.description = 'See the Dolomites and Italian Alps.'
+    idea2.save!
+
+    assert_equal(Idea.search('mountains').length, 2)
+  end
+
 end
