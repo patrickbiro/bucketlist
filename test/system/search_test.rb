@@ -18,7 +18,7 @@ class SearchTest < ApplicationSystemTestCase
      idea3.description ="Stay in a Swiss refuge in the mountains"
      idea3.save!
 
-     visit('/')
+     visit(root_path)
      fill_in 'search_input', with: 'cycling'
      assert page.has_content?('Go cycling across Europe')
      assert page.has_content?('Visit Provence')

@@ -9,12 +9,11 @@ class ShowIdeasTest < ApplicationSystemTestCase
     idea.photo_url = ""
     idea.save!
 
-    #create an id
-    visit('/ideas/'+idea.id.to_s)
+    visit(idea_path(idea))
     assert page.has_content?('Cycle across Australia')
     assert page.has_content?('1587 have done that')
     assert page.has_content?(idea.created_at.strftime("%d %b %y"))
     click_on('Edit', match: :first)
-    assert_equal current_path, ('/ideas/'+idea.id.to_s+'/edit')
+    assert_equal current_path, (edit_idea_path(idea))
   end
 end

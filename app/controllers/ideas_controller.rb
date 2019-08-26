@@ -7,6 +7,7 @@ class IdeasController < ApplicationController
   end
 
   def new
+    idea = Idea.new
   end
 
   def show
@@ -30,7 +31,7 @@ class IdeasController < ApplicationController
 
     # retrieve the instance using the identifier
     idea = Idea.find(id)
-    idea.update(idea_params)
+    idea.update(idea_resource_params)
     redirect_to(account_ideas_path)
   end
 
@@ -39,5 +40,12 @@ class IdeasController < ApplicationController
   def idea_params
     params.permit(:title, :done_count, :photo_url, :name_of_user, :description)
   end
+
+#Needed by the hierarchy of the form resource
+  def idea_resource_params
+    params.require(:idea).permit(
+      :title, :photo_url, :done_count)
+  end
+
 
 end

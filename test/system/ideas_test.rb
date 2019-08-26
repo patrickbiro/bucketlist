@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class IdeasTest < ApplicationSystemTestCase
   test 'that Ideas are created correctly' do #1 asertions
-    visit('/ideas/new')
+    visit(new_idea_path)
     fill_in 'title', with: 'See the Matterhorn'
     click_on 'Create idea'
     visit('/account/ideas')
@@ -19,7 +19,7 @@ class IdeasTest < ApplicationSystemTestCase
     second_idea.title = 'See a giraffe in the wild'
     second_idea.save!
 
-    visit('/ideas/index')
+    visit(ideas_path)
     assert page.has_content?('Cycle across Australia')
     assert page.has_content?('See a giraffe in the wild')
     #assert_equal 2, page.all(class: 'card__thumb').count
@@ -28,9 +28,9 @@ class IdeasTest < ApplicationSystemTestCase
   test 'test idea edit' do
      idea = Idea.new
      idea.save!
-     visit('/ideas/'+idea.id.to_s+'/edit')
-     fill_in 'title', with: 'See the Matterhorn'
-     fill_in 'done_count', with: 159
+     visit(edit_idea_path(idea))
+     fill_in 'idea_title', with: 'See the Matterhorn'
+     fill_in 'idea_done_count', with: 159
      click_on 'Update idea'
      click_on 'See the Matterhorn'
      assert page.has_content?('See the Matterhorn')
@@ -40,7 +40,7 @@ class IdeasTest < ApplicationSystemTestCase
 
    test 'test idea index search without any idea' do
       Idea.all.delete_all
-      visit('/ideas/index')
+      visit(ideas_path)
       assert page.has_content?('No ideas found!')
     end
 
@@ -70,5 +70,5 @@ class IdeasTest < ApplicationSystemTestCase
       refute page.has_content?(idea1.title)
     end
 
-  
+
 end
