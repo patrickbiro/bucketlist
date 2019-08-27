@@ -4,8 +4,10 @@ class IdeaTest < ActiveSupport::TestCase
   test 'the first empty Idea created is first in the list' do
     Idea.all.delete_all
     first_idea = Idea.new
+    first_idea.title="Test"
     first_idea.save!
     second_idea = Idea.new
+    second_idea.title="Test2"
     second_idea.save!
     assert_equal(first_idea, Idea.all.first)
   end
@@ -41,6 +43,7 @@ class IdeaTest < ActiveSupport::TestCase
 
   test 'updated_at is changed after updating done_count' do
     idea = Idea.new
+    idea.title = "test"
     idea.done_count = 150
     idea.save!
     first_updated_at = idea.updated_at
@@ -52,6 +55,7 @@ class IdeaTest < ActiveSupport::TestCase
   test 'updated_at is changed after updating photo_url' do
     idea = Idea.new
     idea.photo_url = 'testurl'
+    idea.title = 'test'
     idea.save!
     first_updated_at = idea.updated_at
     idea.photo_url = 'testurl2'
@@ -95,9 +99,11 @@ class IdeaTest < ActiveSupport::TestCase
   test 'most_recent function. Two Idea records exist.' do
     Idea.all.delete_all
     idea1 = Idea.new
-    idea1.save!
+    idea1.title="Test"
+    idea1.save
     idea2 = Idea.new
-    idea2.save!
+    idea2.title="Test2"
+    idea2.save
     assert_equal(Idea.most_recent().length, 2)
     assert_equal(Idea.most_recent().first, idea2)
   end
@@ -136,6 +142,17 @@ class IdeaTest < ActiveSupport::TestCase
     idea2.save!
 
     assert_equal(Idea.search('mountains').length, 2)
+  end
+
+  test 'Test idea title validation including Char limit of 75' do
+    idea = Idea.new
+    idea.title = 'We can define validation rules within our Rails applications quite simply. The most common place to define validations rules in a Rails applicaiton is within our model classes'
+    refute(idea.valid?)
+    idea2 = Idea.new
+    idea2.title = ''
+    refute(idea.valid?)
+
+
   end
 
 end
