@@ -34,9 +34,13 @@
             </li>
           </ul>
           <div class="goal__intro">
-            <p>
-              We can put a description about our Idea here!
-            </p>
+
+              <% if(@idea.description.nil? || @idea.description.length == 0) %>
+                <p>We can put a description about our Idea here!</p>
+              <% else %>
+              <p><%= @idea.description %></p>
+              <% end %>
+
           </div>
           <div class="goal__meta">
             <span>Created on <time datetime="2017-08-27T03:48"><%= @idea.created_at.strftime("%d %b %y") %></time></span>

@@ -7,7 +7,7 @@ class IdeasController < ApplicationController
   end
 
   def new
-    idea = Idea.new
+    @idea = Idea.new
   end
 
   def show
@@ -15,7 +15,7 @@ class IdeasController < ApplicationController
   end
 
   def create
-    idea = Idea.new(idea_params)
+    idea = Idea.new(idea_resource_params)
     idea.save!
     redirect_to(account_ideas_path)
   end
@@ -37,14 +37,11 @@ class IdeasController < ApplicationController
 
   private
 
-  def idea_params
-    params.permit(:title, :done_count, :photo_url, :name_of_user, :description)
-  end
 
 #Needed by the hierarchy of the form resource
   def idea_resource_params
     params.require(:idea).permit(
-      :title, :photo_url, :done_count)
+      :title, :photo_url, :done_count, :description)
   end
 
 

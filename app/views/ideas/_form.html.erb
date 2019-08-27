@@ -12,8 +12,12 @@
   <%= form.label(:photo_url, class: 'input-group__label') %>
   <%= form.text_field(:photo_url, class: 'input-group__field')%>
 </div>
+<div class="input-group input-group--horizontal">
+  <%= form.label(:description, class: 'input-group__label') %>
+  <%= form.text_field(:description, class: 'input-group__field')%>
+</div>
 <div class="prompt">
   <a class="prompt__cancel" href="#cancel">Cancel</a>
-  <%= button_tag('Update idea', class: 'btn btn--primary prompt__confirm') %>
+  <%= form.submit(class: 'btn btn--primary prompt__confirm') %>
 </div>
 <% end %>

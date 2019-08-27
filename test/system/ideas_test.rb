@@ -3,8 +3,8 @@ require "application_system_test_case"
 class IdeasTest < ApplicationSystemTestCase
   test 'that Ideas are created correctly' do #1 asertions
     visit(new_idea_path)
-    fill_in 'title', with: 'See the Matterhorn'
-    click_on 'Create idea'
+    fill_in 'Title', with: 'See the Matterhorn'
+    click_on 'Create Idea'
     visit('/account/ideas')
     assert page.has_content?('See the Matterhorn')
   end
@@ -31,7 +31,7 @@ class IdeasTest < ApplicationSystemTestCase
      visit(edit_idea_path(idea))
      fill_in 'idea_title', with: 'See the Matterhorn'
      fill_in 'idea_done_count', with: 159
-     click_on 'Update idea'
+     click_on 'Update Idea'
      click_on 'See the Matterhorn'
      assert page.has_content?('See the Matterhorn')
      assert page.has_content?('159 have done that')
