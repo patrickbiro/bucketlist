@@ -2,10 +2,10 @@
   <div class="content-wrapper hr">
     <div class="media">
       <div class="media__figure">
-        <% if(@idea.photo_url.length<1) %>
-          <%= image_tag("http://fpoimg.com/255x170", alt: "a card image") %>
+        <% if(@idea.photo_url.nil? || @idea.photo_url.length == 0) %>
+        <%= image_tag("http://fpoimg.com/255x170", alt: "a card image") %>
         <% else %>
-          <%= image_tag(@idea.photo_url, alt: "a card image") %>
+        <%= image_tag(@idea.photo_url, alt: "a card image") %>
         <% end %>
       </div>
       <div class="media__body">
@@ -35,11 +35,11 @@
           </ul>
           <div class="goal__intro">
 
-              <% if(@idea.description.nil? || @idea.description.length == 0) %>
-                <p>We can put a description about our Idea here!</p>
-              <% else %>
-              <p><%= @idea.description %></p>
-              <% end %>
+            <% if(@idea.description.nil? || @idea.description.length == 0) %>
+            <p>We can put a description about our Idea here!</p>
+            <% else %>
+            <p><%= @idea.description %></p>
+            <% end %>
 
           </div>
           <div class="goal__meta">
@@ -66,37 +66,25 @@
     <div class="comments">
       <h2 class="comments__title">Discussion <span>3 comments</span></h2>
 
-      <form class="comments__input" action="goal.html" method="post">
-        <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
-        <div class="input-group">
-          <label class="input-group__label" for="comment">Add a comment</label>
-          <textarea id="comment" class="input-group__field"></textarea>
-        </div>
-        <button class="btn btn--primary" type="submit">Post</button>
-      </form>
+      <%= form_for([@idea, @comment], html: { class: 'comments__input' }) do |form| %>
+      <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
+      <div class="input-group">
+        <%= form.label(:body, 'Add comment', class: 'input-group__label') %>
+        <%= form.text_area(:body, class: 'input-group__field')%>
+      </div>
+      <%= form.submit('Post', class: 'btn btn--primary') %>
+      <% end %>
 
       <ul class="comments__listing">
+        <% @idea.comments.each do |comment| %>
         <li class="comment">
           <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
           <div class="comment__body">
-            <h3 class="comment__title">Tom Jenkinson <time datetime="2017-08-28T13:48">Today</time></h3>
-            <p>I've done this and it's amazing!  I'll never forget it.</p>
+            <h3 class="comment__title">Tom Jenkinson <time datetime="2017-08-28T13:48"><%= comment.created_at.strftime("%d %b %y")%></time></h3>
+            <p><%= comment.body %></p>
           </div>
         </li>
-        <li class="comment">
-          <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
-          <div class="comment__body">
-            <h3 class="comment__title">Emily Walker <time datetime="2017-08-27T03:48">Yesterday</time></h3>
-            <p>When do you think that you'll get a chance to do this?  Have you already planned it?</p>
-          </div>
-        </li>
-        <li class="comment">
-          <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
-          <div class="comment__body">
-            <h3 class="comment__title">Claire Prince <time datetime="2016-06-10T09:48">10. June 2016</time></h3>
-            <p>I'm thinking about this as well.</p>
-          </div>
-        </li>
+        <% end %>
       </ul>
     </div>
   </div>

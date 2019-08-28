@@ -19,9 +19,12 @@ Rails.application.routes.draw do
 
   get 'styleguide/form/example', to:'styles#atoms'
 
-  #Resources Ideas
+  #Resources Ideas with nested child resource comments
 
-  resources :ideas
+  resources :ideas do
+    resources :comments
+  end
+
 
 
 
