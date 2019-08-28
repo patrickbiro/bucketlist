@@ -4,6 +4,7 @@ class IdeasController < ApplicationController
     logger.info("The search term is #{@search_term}.")
     @ideas = Idea.search(@search_term)
     logger.info("The ideas existing are #{@ideas}.")
+    
   end
 
   def new
@@ -11,6 +12,7 @@ class IdeasController < ApplicationController
   end
 
   def show
+    @display_add_comment = session[:user_id].present?
     @idea = Idea.find(params[:id])
     @comment = Comment.new
   end

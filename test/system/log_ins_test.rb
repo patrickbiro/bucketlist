@@ -18,4 +18,6 @@ class LogInsTest < ApplicationSystemTestCase
     click_on 'Log in'
     assert(User.all.length==1)
   end
+
+  
 end

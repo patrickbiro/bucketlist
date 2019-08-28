@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.find_or_create_by(user_resource_params)
     if(@user.save)
-      session[:user_id] = @user.email
+      session[:user_id] = @user.id
       redirect_to(ideas_path)
     else
       render 'new'
