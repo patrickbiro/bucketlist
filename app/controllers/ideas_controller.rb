@@ -4,7 +4,7 @@ class IdeasController < ApplicationController
     logger.info("The search term is #{@search_term}.")
     @ideas = Idea.search(@search_term)
     logger.info("The ideas existing are #{@ideas}.")
-    
+
   end
 
   def new
@@ -18,7 +18,9 @@ class IdeasController < ApplicationController
   end
 
   def create
+    user=User.find(session[:user_id])
     @idea = Idea.new(idea_resource_params)
+    @idea.user = user
     if(@idea.save)
       redirect_to(account_ideas_path)
     else

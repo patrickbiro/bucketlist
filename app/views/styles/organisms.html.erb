@@ -74,16 +74,11 @@
     <h2>02. Ideas</h2>
     <div>
       <ul class="bare-list float-grid css-grid">
-
-          <% ["Swim with turtles", "See the Northern Lights", "Make homemade pasta", "Make homemade pasta"].each do |item| %>
-          <li>
-          <%= render(partial: 'idea_card', locals: {
-            title: item,
-            done_count: 24,
-            photo_url: "http://fpoimg.com/255x170"
-          }) %>
-          </li>
-          <% end %>
+        <% @ideas.each do |idea| %>
+        <li>
+        <%= render(partial: 'idea_card', locals: { idea: idea}) %>
+        </li>
+        <% end %>
       </ul>
     </div>
   </section>

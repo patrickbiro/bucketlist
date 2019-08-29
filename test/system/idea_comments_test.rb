@@ -3,8 +3,7 @@ require "application_system_test_case"
 class IdeaCommentsTest < ApplicationSystemTestCase
   test 'adding a Comment to an Idea' do
 
-    idea = Idea.new
-    idea.title = 'Cycle across Australia'
+    idea = Idea.new title:'Cycle across Australia', user: User.new
     idea.save!
 
     user = User.new
@@ -21,8 +20,7 @@ class IdeaCommentsTest < ApplicationSystemTestCase
   end
 
   test 'comments cannot be added when not logged in' do #1 asertions
-    idea = Idea.new
-    idea.title = 'Cycle across Australia'
+    idea = Idea.new title:'Cycle across Australia', user: User.new
     idea.save!
     visit(idea_path(idea))
     refute page.has_content?('Add Comment')

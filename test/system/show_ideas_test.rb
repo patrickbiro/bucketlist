@@ -3,8 +3,7 @@ require "application_system_test_case"
 class ShowIdeasTest < ApplicationSystemTestCase
   test 'that Idea are showed correctly' do #1 asertions
     #create an idea
-    idea = Idea.new
-    idea.title = 'Cycle across Australia'
+    idea = Idea.new title:'Cycle across Australia', user: User.new
     idea.done_count = 1587
     idea.photo_url = ""
     idea.save!

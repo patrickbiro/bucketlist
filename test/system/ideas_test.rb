@@ -11,12 +11,10 @@ class IdeasTest < ApplicationSystemTestCase
 
   test 'that Ideas are loaded in the index' do #3 asertions
 
-    first_idea = Idea.new
-    first_idea.title = 'Cycle across Australia'
+    first_idea = Idea.new title:'Cycle across Australia', user: User.new
     first_idea.save!
 
-    second_idea = Idea.new
-    second_idea.title = 'See a giraffe in the wild'
+    second_idea = Idea.new title:'See a giraffe in the wild', user: User.new
     second_idea.save!
 
     visit(ideas_path)
@@ -26,8 +24,7 @@ class IdeasTest < ApplicationSystemTestCase
   end
 
   test 'test idea edit' do
-     idea = Idea.new
-     idea.title='Title'
+     idea = Idea.new title:'Title', user: User.new
      idea.save!
      visit(edit_idea_path(idea))
      fill_in 'idea_title', with: 'See the Matterhorn'
@@ -48,20 +45,16 @@ class IdeasTest < ApplicationSystemTestCase
     test 'Last 3 Ideas are loaded in the index' do #4 asertions
       Idea.all.delete_all
 
-      idea1 = Idea.new
-      idea1.title = "Exciting idea 1"
+      idea1 = Idea.new title:'Exciting idea 1', user: User.new
       idea1.save!
 
-      idea2 = Idea.new
-      idea2.title = "Exciting idea 2"
+      idea2 = Idea.new title:'Exciting idea 2', user: User.new
       idea2.save!
 
-      idea3 = Idea.new
-      idea3.title = "Exciting idea 3"
+      idea3 = Idea.new title:'Exciting idea 3', user: User.new
       idea3.save!
 
-      idea4 = Idea.new
-      idea4.title = "Exciting idea 4"
+      idea4 = Idea.new title:'Exciting idea 4', user: User.new
       idea4.save!
 
       visit('/')
@@ -83,8 +76,7 @@ class IdeasTest < ApplicationSystemTestCase
     test 'Test validation critera for edition. Less than 75 char' do #4 asertions
       Idea.all.delete_all
 
-      idea1 = Idea.new
-      idea1.title = "Exciting idea 1"
+      idea1 = Idea.new title:'Exciting idea 1', user: User.new
       idea1.save!
 
       visit(edit_idea_path(idea1))

@@ -4,8 +4,7 @@ class CommentTest < ActiveSupport::TestCase
 
   test 'changing the associated Idea for a Comment' do
     Idea.all.delete_all
-    first_idea = Idea.new
-    first_idea.title="Test"
+    first_idea = Idea.new title:'Test', user: User.new
     first_idea.save!
     user = User.new
     user.save!
@@ -14,8 +13,7 @@ class CommentTest < ActiveSupport::TestCase
     comment.body = "I'd like to do this!"
 
 
-    second_idea = Idea.new
-    second_idea.title="Test2"
+    second_idea = Idea.new title:'Test2', user: User.new
     second_idea.save!
 
     comment.idea = second_idea
@@ -26,7 +24,7 @@ class CommentTest < ActiveSupport::TestCase
 
   test 'cascading save' do
     Idea.all.delete_all
-    first_idea = Idea.new title:"Test"
+    first_idea = Idea.new title:"Test", user: User.new
     first_idea.save!
     user = User.new
     user.save!
@@ -42,7 +40,7 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   test 'Comments are ordered correctly' do
-    idea = Idea.new title:"Test"
+    idea = Idea.new title:"Test", user: User.new
     idea.save!
 
     user = User.new
