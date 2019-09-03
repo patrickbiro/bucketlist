@@ -2,6 +2,10 @@ require "application_system_test_case"
 
 class IdeasTest < ApplicationSystemTestCase
   test 'that Ideas are created correctly' do #1 asertions
+    visit(new_user_path)
+    fill_in 'Email address', with: 'patrick@epfl.ch'
+    click_on 'Log in'
+
     visit(new_idea_path)
     fill_in 'Title', with: 'See the Matterhorn'
     click_on 'Create Idea'
@@ -65,6 +69,11 @@ class IdeasTest < ApplicationSystemTestCase
     end
 
     test 'Test validation critera for idea creation. Less than 75 char' do #4 asertions
+
+      visit(new_user_path)
+      fill_in 'Email address', with: 'patrick@epfl.ch'
+      click_on 'Log in'
+
       visit(new_idea_path)
       fill_in 'idea_title', with: 'Add a section in the app/views/ideas/_form.html.erb partial that will display all error associated with a failed save. An HTML fragment has been provided in the resources section of this unit as a template. Make use of the #join method to separate each error with a <br /> element.'
       fill_in 'idea_done_count', with: 159

@@ -22,16 +22,23 @@
                   <!-- <use xlink:href="images/icons-defs.svg#check"></use> -->
                 </svg>
                 Edit
+                <%= "#{@disable_add_goal}." %>
+
               </a>
             </li>
-            <li>
-              <button class="btn delta" type="button">
-                <svg class="icon-heart icon--sm" role="presentation">
-                  <!-- <use xlink:href="images/icons-defs.svg#heart"></use> -->
-                </svg>
-                Add
-              </button>
-            </li>
+            <% if(@user.present?) %>
+              <li>
+                <%= form_tag(user_goals_path(@user)) do %>
+                  <%= hidden_field_tag('idea_id', @idea.id) %>
+                  <%= button_tag(class:"btn delta", type: 'submit', disabled: @disable_add_goal) do %>
+                    <svg class="icon-heart icon--sm" role="presentation">
+                      <!-- <use xlink:href="images/icons-defs.svg#heart"></use> -->
+                    </svg>
+                    Add
+                  <% end %>
+                <% end %>
+              </li>
+            <% end %>
           </ul>
           <div class="goal__intro">
 
@@ -67,14 +74,14 @@
       <h2 class="comments__title">Discussion <span>3 comments</span></h2>
 
       <% if(@display_add_comment) %>
-        <%= form_for([@idea, @comment], html: { class: 'comments__input' }) do |form| %>
-        <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
-        <div class="input-group">
-          <%= form.label(:body, 'Add comment', class: 'input-group__label') %>
-          <%= form.text_area(:body, class: 'input-group__field')%>
-        </div>
-        <%= form.submit('Post', class: 'btn btn--primary') %>
-        <% end %>
+      <%= form_for([@idea, @comment], html: { class: 'comments__input' }) do |form| %>
+      <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
+      <div class="input-group">
+        <%= form.label(:body, 'Add comment', class: 'input-group__label') %>
+        <%= form.text_area(:body, class: 'input-group__field')%>
+      </div>
+      <%= form.submit('Post', class: 'btn btn--primary') %>
+      <% end %>
       <% end %>
 
       <ul class="comments__listing">

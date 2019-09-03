@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :users
+  resources :users do
+    resources :goals
+  end
 
 
 

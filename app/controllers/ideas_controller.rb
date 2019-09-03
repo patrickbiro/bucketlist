@@ -12,9 +12,18 @@ class IdeasController < ApplicationController
   end
 
   def show
+
+
     @display_add_comment = session[:user_id].present?
     @idea = Idea.find(params[:id])
     @comment = Comment.new
+
+    if (session[:user_id].present?)
+      @user=User.find(session[:user_id])
+      @disable_add_goal = @user.goals.exists?(@idea.id)
+    else
+      @user=nil
+    end
   end
 
   def create

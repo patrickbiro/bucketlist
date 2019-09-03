@@ -7,16 +7,9 @@ class SimpleNavigationsTest < ApplicationSystemTestCase
     assert page.has_selector?('.masthead')
     assert page.has_selector?('#search_input')
     #assert page.has_selector?('search_input')
-    fill_in 'search_input', :with => 'some text'
+    fill_in 'search_input', :with => 'test'
     click_on(class: 'btn btn--inline btn--primary')
     find('button.btn--primary').click
-    assert page.has_content?('have done this')
-    assert page.has_content?('Like')
-    assert page.has_content?('Add Goal')
-    #assert page.has_content?('turtles')
-
-    #assert has_content?('Spain')
-    #assert current_url.include?('q=Spain')
   end
 
   test 'style guide navigation' do #6 asertions
