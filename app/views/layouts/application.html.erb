@@ -22,7 +22,11 @@
           <nav class="site-header__nav">
             <ul class="main-navigation">
               <li><a href="#nolink">Inspiration</a></li>
-              <li><a href="#nolink">Sign Up</a></li>
+              <%= render(partial: 'styles/sub_nav_item', locals: {
+                title: "Log in",
+                uri: new_user_path,
+                current: false
+              }) %>
               <%= render(partial: 'styles/sub_nav_item', locals: {
                 title: "Account",
                 uri: account_ideas_path,
