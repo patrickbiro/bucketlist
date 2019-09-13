@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_by(user_resource_params)
+    @user = User.new(user_resource_params)
     if(@user.save)
       session[:user_id] = @user.id
       redirect_to(account_ideas_path)
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
 #Needed by the hierarchy of the form resource
   def user_resource_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :password)
   end
 
 end
