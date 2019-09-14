@@ -12,11 +12,16 @@ class AccountController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    #will use current_user helper method instead
   end
 
   def update
-
+    @user = current_user
+    if(@user.update(user_resource_params))
+      redirect_to(account_path)
+    else
+      render 'edit'
+    end
   end
 
 
@@ -26,7 +31,10 @@ class AccountController < ApplicationController
     end
   end
 
-
+  def user_resource_params
+    params.require(:user).permit(
+      :name, :email, :avatar_url)
+  end
 
   def current_user
     User.find(session[:user_id])

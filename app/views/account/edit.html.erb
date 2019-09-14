@@ -9,23 +9,28 @@
       </ul>
     </nav>
     <h1>Account details</h1>
-    <form class="form--inpage" action="#" method="post">
-      <div class="input-group input-group--horizontal">
-        <label class="input-group__label" for="email">Email</label>
-        <input id="email" class="input-group__field" type="text" name="email" placeholder="e.g. me@epfl.ch">
-      </div>
-      <div class="input-group input-group--horizontal">
-        <label class="input-group__label" for="full-name">Name</label>
-        <input id="name" class="input-group__field" type="text" name="name" placeholder="e.g. Diana Prince">
-      </div>
-      <div class="input-group input-group--horizontal">
-        <label class="input-group__label" for="profile-image">Avatar URL</label>
-        <input id="profile-image" class="input-group__field" type="text" name="profile-image" >
-      </div>
-      <div class="prompt">
-        <a class="prompt__cancel" href="#cancel">Cancel</a>
-        <input name="commit" value="Update account" type="submit" class="btn btn--primary prompt__confirm">
-      </div>
-    </form>
+    <%= form_for(current_user, url: account_path, html: { class: 'form--inpage' }) do |form| %>
+
+    <div class="input-group input-group--horizontal">
+      <%= form.label(:email, class: 'input-group__label') %>
+      <%= form.text_field(:email, class: 'input-group__field')%>
+    </div>
+
+    <div class="input-group input-group--horizontal">
+      <%= form.label(:name, class: 'input-group__label') %>
+      <%= form.text_field(:name, class: 'input-group__field')%>
+    </div>
+
+    <div class="input-group input-group--horizontal">
+      <%= form.label(:avatar_url, class: 'input-group__label') %>
+      <%= form.text_field(:avatar_url, class: 'input-group__field')%>
+    </div>
+
+    <div class="prompt">
+      <a class="prompt__cancel" href="#cancel">Cancel</a>
+      <%= form.submit(class: 'btn btn--primary prompt__confirm') %>
+    </div>
+    <% end %>
+
   </div>
 </main>
