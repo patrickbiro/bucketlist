@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   get 'account/ideas'
 
+  get 'account', to:'account#edit'
+  patch 'account', to:'account#update'
+
   root to: 'home#index'
 
   get 'home', to:'home#index'
