@@ -6,7 +6,7 @@ class LogInsTest < ApplicationSystemTestCase
     visit(new_user_path)
     fill_in 'Email address', with: 'patrick@epfl.ch'
     fill_in 'Password', with: 'password'
-    click_on 'Sign in'
+    find(:button, 'Sign in').click
     assert(User.all.length>0)
     assert_equal(User.first.email, 'patrick@epfl.ch')
   end

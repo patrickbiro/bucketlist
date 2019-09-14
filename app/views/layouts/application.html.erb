@@ -24,6 +24,11 @@
               <li><a href="#nolink">Inspiration</a></li>
               <%= render(partial: 'styles/sub_nav_item', locals: {
                 title: "Log in",
+                uri: new_session_path,
+                current: false
+              }) %>
+              <%= render(partial: 'styles/sub_nav_item', locals: {
+                title: "Sign in",
                 uri: new_user_path,
                 current: false
               }) %>

@@ -5,7 +5,7 @@ class IdeasTest < ApplicationSystemTestCase
     visit(new_user_path)
     fill_in 'Email address', with: 'patrick@epfl.ch'
     fill_in 'Password', with: 'password'
-    click_on 'Sign in'
+    find(:button, 'Sign in').click
 
     visit(new_idea_path)
     fill_in 'Title', with: 'See the Matterhorn'
@@ -75,7 +75,7 @@ class IdeasTest < ApplicationSystemTestCase
     visit(new_user_path)
     fill_in 'Email address', with: 'patrick@epfl.ch'
     fill_in 'Password', with: 'password'
-    click_on 'Sign in'
+    find(:button, 'Sign in').click
 
     visit(new_idea_path)
     fill_in 'idea_title', with: 'Add a section in the app/views/ideas/_form.html.erb partial that will display all error associated with a failed save. An HTML fragment has been provided in the resources section of this unit as a template. Make use of the #join method to separate each error with a <br /> element.'
