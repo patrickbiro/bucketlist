@@ -4,16 +4,15 @@ class CommentTest < ActiveSupport::TestCase
 
   test 'changing the associated Idea for a Comment' do
     Idea.all.delete_all
-    first_idea = Idea.new title:'Test', user: User.new
+    user= User.new email: 'patrick@epfl.ch', password: 'password'
+    first_idea = Idea.new title:'Test', user: user
     first_idea.save!
-    user = User.new
-    user.save!
 
     comment = Comment.new
     comment.body = "I'd like to do this!"
 
 
-    second_idea = Idea.new title:'Test2', user: User.new
+    second_idea = Idea.new title:'Test2', user: user
     second_idea.save!
 
     comment.idea = second_idea
@@ -24,10 +23,9 @@ class CommentTest < ActiveSupport::TestCase
 
   test 'cascading save' do
     Idea.all.delete_all
-    first_idea = Idea.new title:"Test", user: User.new
+    user= User.new email: 'patrick@epfl.ch', password: 'password'
+    first_idea = Idea.new title:"Test", user: user
     first_idea.save!
-    user = User.new
-    user.save!
 
     comment = Comment.new
     comment.body = "Great idea!"
@@ -40,11 +38,9 @@ class CommentTest < ActiveSupport::TestCase
   end
 
   test 'Comments are ordered correctly' do
-    idea = Idea.new title:"Test", user: User.new
+    user= User.new email: 'patrick@epfl.ch', password: 'password'
+    idea = Idea.new title:"Test", user: user
     idea.save!
-
-    user = User.new
-    user.save!
 
     comment1 = Comment.new body: "This would be great fun"
     comment2 = Comment.new body: "I agree! I'd like to do this as well"

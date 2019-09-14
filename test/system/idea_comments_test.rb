@@ -2,15 +2,15 @@ require "application_system_test_case"
 
 class IdeaCommentsTest < ApplicationSystemTestCase
   test 'adding a Comment to an Idea' do
-
-    idea = Idea.new title:'Cycle across Australia', user: User.new
+    user= User.new email: 'test@epfl.ch', password: 'password'
+    idea = Idea.new title:'Cycle across Australia', user: user
     idea.save!
+    #user.save!
 
-    user = User.new
-    user.save!
-    visit(new_user_path)
-    fill_in 'Email address', with: 'patrick@epfl.ch'
-    click_on 'Log in'
+    visit(new_session_path)
+    fill_in 'email', with: 'test@epfl.ch'
+    fill_in 'password', with: 'password'
+    find(:button, 'Log in').click
 
     visit(idea_path(idea))
     fill_in 'Add comment', with: 'Such a nice experience'
@@ -20,7 +20,8 @@ class IdeaCommentsTest < ApplicationSystemTestCase
   end
 
   test 'comments cannot be added when not logged in' do #1 asertions
-    idea = Idea.new title:'Cycle across Australia', user: User.new
+    user= User.new email: 'test@epfl.ch', password: 'password'
+    idea = Idea.new title:'Cycle across Australia', user: user
     idea.save!
     visit(idea_path(idea))
     refute page.has_content?('Add Comment')

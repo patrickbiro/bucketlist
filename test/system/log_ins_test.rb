@@ -14,10 +14,11 @@ class LogInsTest < ApplicationSystemTestCase
   test 'log in does not create a User' do #1 asertions
     User.all.delete_all
     user= User.new email: 'patrick@epfl.ch', password: 'password'
+    user.save!
     visit(new_session_path)
-    fill_in 'Email address', with: 'patrick@epfl.ch'
-    fill_in 'Password', with: 'password'
-    click_on 'Log in'
+    fill_in 'email', with: 'patrick@epfl.ch'
+    fill_in 'password', with: 'password'
+    find(:button, 'Log in').click
     assert(User.all.length==1)
   end
 

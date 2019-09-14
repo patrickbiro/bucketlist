@@ -2,8 +2,8 @@ require "application_system_test_case"
 
 class ShowIdeasTest < ApplicationSystemTestCase
   test 'that Idea are showed correctly' do #1 asertions
-    #create an idea
-    idea = Idea.new title:'Cycle across Australia', user: User.new
+    user= User.new email: 'patrick@epfl.ch', password: 'password'
+    idea = Idea.new title:'Cycle across Australia', user: user
     idea.done_count = 1587
     idea.photo_url = ""
     idea.save!

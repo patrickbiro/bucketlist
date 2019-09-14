@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment.idea = @idea
     @comment.user = @user
     @comment.save!
-    redirect_to(review_path(@idea))
+    redirect_to(idea_path(@idea))
 
   end
 
