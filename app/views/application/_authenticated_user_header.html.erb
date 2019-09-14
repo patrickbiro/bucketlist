@@ -1,0 +1,13 @@
+<nav class="site-header__nav">
+  <ul class="main-navigation">
+    <li><a href="#nolink">Inspiration</a></li>
+    <%= render(partial: 'styles/sub_nav_item', locals: {
+      title: "My account",
+      uri: account_ideas_path,
+      current: false
+    }) %>
+    <li>
+      <%= link_to("Log out", session_path(1), method: :delete) %>
+    </li>
+  </ul>
+</nav>

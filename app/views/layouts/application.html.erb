@@ -1,62 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BucketList</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>BucketList</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application' %>
 
-  </head>
+</head>
 
-  <body>
-    <header>
-      <div class="site-header">
-        <div class="content-wrapper">
-          <div class="logo">
-            <%= link_to('<span><i>My</i> Bucket List</span>'.html_safe, root_path) %>
-
-          </div>
-          <%= render(partial: 'search_form') %>
-
-          <nav class="site-header__nav">
-            <ul class="main-navigation">
-              <li><a href="#nolink">Inspiration</a></li>
-              <%= render(partial: 'styles/sub_nav_item', locals: {
-                title: "Log in",
-                uri: new_session_path,
-                current: false
-              }) %>
-              <%= render(partial: 'styles/sub_nav_item', locals: {
-                title: "Sign in",
-                uri: new_user_path,
-                current: false
-              }) %>
-              <%= render(partial: 'styles/sub_nav_item', locals: {
-                title: "Account",
-                uri: account_ideas_path,
-                current: false
-              }) %>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <%= yield %>
-    <footer class="site-footer">
+<body>
+  <header>
+    <div class="site-header">
       <div class="content-wrapper">
-        <div class="logo logo--inverted footer__logo">
+        <div class="logo">
           <%= link_to('<span><i>My</i> Bucket List</span>'.html_safe, root_path) %>
+
         </div>
-        <nav class="footer__navigation">
-          <ul>
-            <li><a href="#nolink">About</a></li>
-            <li><a <%= link_to('Styleguide', styles_atoms_path) %></a></li>
-            <li><a href="#nolink">Terms of Use</a></li>
-          </ul>
-        </nav>
-        <p class="copyright">&copy; EPFL 2017</p>
+        <%= render(partial: 'search_form') %>
+
+        <% if(logged_in?) %>
+          <%= render(partial: 'authenticated_user_header') %>
+        <% else %>
+          <%= render(partial: 'anonymous_user_header') %>
+        <% end %>
       </div>
-    </footer>
-  </body>
+    </div>
+  </header>
+  <%= yield %>
+  <footer class="site-footer">
+    <div class="content-wrapper">
+      <div class="logo logo--inverted footer__logo">
+        <%= link_to('<span><i>My</i> Bucket List</span>'.html_safe, root_path) %>
+      </div>
+      <nav class="footer__navigation">
+        <ul>
+          <li><a href="#nolink">About</a></li>
+          <li><a <%= link_to('Styleguide', styles_atoms_path) %></a></li>
+          <li><a href="#nolink">Terms of Use</a></li>
+        </ul>
+      </nav>
+      <p class="copyright">&copy; EPFL 2017</p>
+    </div>
+  </footer>
+</body>
 </html>
