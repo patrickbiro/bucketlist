@@ -21,9 +21,9 @@
   <div class="content-wrapper">
     <% if(@goals.any?) %>
     <ul class="bare-list float-grid css-grid">
-      <% @goals.each do |idea| %>
+      <% @goals.each do |goal| %>
       <li>
-        <%= render(partial: 'idea_card', locals: { idea: idea}) %>
+        <%= render(partial: 'goal_card', locals: { goal: goal}) %>
       </li>
       <% end %>
     </ul>
