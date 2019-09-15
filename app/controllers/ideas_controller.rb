@@ -1,4 +1,8 @@
 class IdeasController < ApplicationController
+  before_action :ensure_authenticated, only: :edit
+  before_action :ensure_owner,         only: :edit
+
+
   def index
     @search_term = params[:search_input]
     logger.info("The search term is #{@search_term}.")
@@ -54,6 +58,14 @@ class IdeasController < ApplicationController
       render 'edit'
     end
 
+  end
+
+  def ensure_owner
+    idea=Idea.find(params[:id])
+    if(idea.user == current_user)
+      return
+    end
+    redirect_to(account_path)
   end
 
   private
