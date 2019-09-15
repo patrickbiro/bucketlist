@@ -16,13 +16,17 @@ class AccountController < ApplicationController
   end
 
   def update
-    @user = current_user
-    if(@user.update(user_resource_params))
+    if(current_user.update(user_params))
       redirect_to(account_path)
     else
       render 'edit'
     end
   end
+
+  def goals
+    @goals = current_user.goals
+  end
+
 
 
   def ensure_authenticated
@@ -31,7 +35,7 @@ class AccountController < ApplicationController
     end
   end
 
-  def user_resource_params
+  def user_params
     params.require(:user).permit(
       :name, :email, :avatar_url)
   end

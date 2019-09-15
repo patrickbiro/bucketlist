@@ -2,8 +2,16 @@
   <div class="content-wrapper">
     <nav>
       <ul class="sub-navigation">
-        <li><a href="#nolink" class="current">Account</a></li>
-        <li><a href="#nolink">Goals</a></li>
+        <%= render(partial: 'styles/sub_nav_item', locals: {
+          title: "Account",
+          uri: account_path,
+          current: true
+        }) %>
+        <%= render(partial: 'styles/sub_nav_item', locals: {
+          title: "Goals",
+          uri: account_goals_path,
+          current: false
+        }) %>
         <li><a href="#nolink">Ideas</a></li>
         <li><a href="#nolink">Following</a></li>
       </ul>

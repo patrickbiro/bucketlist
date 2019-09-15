@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   get 'account/ideas'
-
   get 'account', to:'account#edit'
   patch 'account', to:'account#update'
+  get 'account/goals', to: 'account#goals', as: 'account_goals'
 
   root to: 'home#index'
 
