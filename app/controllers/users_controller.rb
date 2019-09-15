@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_resource_params)
+    @user.role = 'registered'
     if(@user.save)
       session[:user_id] = @user.id
       redirect_to(account_ideas_path)
