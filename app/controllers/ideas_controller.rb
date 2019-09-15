@@ -1,6 +1,7 @@
 class IdeasController < ApplicationController
-  before_action :ensure_authenticated, only: :edit
-  before_action :ensure_owner,         only: :edit
+  before_action :ensure_authenticated, only: [:edit, :update, :new, :create]
+  before_action :load_idea,         only: [:edit, :update]
+  before_action :ensure_owner,         only: [:edit, :update]
 
 
   def index
@@ -35,34 +36,32 @@ class IdeasController < ApplicationController
     @idea = Idea.new(idea_resource_params)
     @idea.user = user
     if(@idea.save)
-      redirect_to(account_ideas_path)
+      redirect_to(account_goals_path)
     else
       render 'new'
     end
   end
 
   def edit
-    id = params[:id]
-    @idea=Idea.find(id)
+
   end
 
   def update
-    # extract the identifier from the params Hash
-    id = params[:id]
-
-    # retrieve the instance using the identifier
-    @idea = Idea.find(id)
     if(@idea.update(idea_resource_params))
-      redirect_to(account_ideas_path)
+      redirect_to(account_goals_path)
     else
       render 'edit'
     end
 
   end
 
+  def load_idea
+    @idea = Idea.find(params[:id])
+  end
+
+
   def ensure_owner
-    idea=Idea.find(params[:id])
-    if(idea.user == current_user)
+    if(@idea.user == current_user)
       return
     end
     redirect_to(account_path)

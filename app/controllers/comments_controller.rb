@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
+  before_action :ensure_authenticated
+
   def create
     @idea = Idea.find(params[:idea_id])
-    @user = User.find(session[:user_id])
+    @user = current_user
     @comment = Comment.new(comment_resource_params)
     @comment.idea = @idea
     @comment.user = @user

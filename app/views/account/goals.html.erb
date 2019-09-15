@@ -17,6 +17,10 @@
       </ul>
     </nav>
     <h1>My goals</h1>
+
+  </div>
+  <div class="content-wrapper">
+    <%= link_to('Create Idea', new_idea_path, class: "btn") %>
   </div>
   <div class="content-wrapper">
     <% if(@goals.any?) %>
