@@ -15,9 +15,7 @@ class UsersController < ApplicationController
   end
 
 
-  def default_role!
-    self.role ||= 'registered'
-  end
+
 
   private
 

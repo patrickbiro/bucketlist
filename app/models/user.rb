@@ -16,4 +16,8 @@ class User < ApplicationRecord
     self.email = email.downcase
   end
 
+  def default_role!
+    self.role ||= 'registered'
+  end
+
 end
