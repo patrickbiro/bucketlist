@@ -34,9 +34,10 @@ class IdeasController < ApplicationController
   end
 
   def create
-    user=User.find(session[:user_id])
+    user=current_user
     @idea = Idea.new(idea_resource_params)
     @idea.user = user
+    user.goals << @idea
     if(@idea.save)
       redirect_to(account_goals_path)
     else

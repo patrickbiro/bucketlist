@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_secure_password
   before_validation :downcase_email
   validates :email, uniqueness: true
+  after_initialize :default_role!
+  validates :role, inclusion: { in: %w(registered admin) }
 
 
 

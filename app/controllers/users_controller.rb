@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_resource_params)
-    @user.role = 'registered'
     if(@user.save)
       session[:user_id] = @user.id
       redirect_to(account_ideas_path)
@@ -15,10 +14,15 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def default_role!
+    self.role ||= 'registered'
+  end
+
   private
 
 
-#Needed by the hierarchy of the form resource
+  #Needed by the hierarchy of the form resource
   def user_resource_params
     params.require(:user).permit(:email, :password)
   end
