@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :ensure_admin, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -14,7 +15,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
 
+  def update
+    user = User.find(params[:id])
+    if(user.update(user_edit_admin_params))
+      redirect_to(account_path)
+    else
+      render 'edit'
+    end
+  end
+
+  def ensure_admin
+    if(current_user.role == 'admin')
+      return
+    end
+    redirect_to(account_path)
+  end
 
 
   private
@@ -23,6 +42,11 @@ class UsersController < ApplicationController
   #Needed by the hierarchy of the form resource
   def user_resource_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def user_edit_admin_params
+    params.require(:user).permit(
+      :name, :email, :role, :avatar_url)
   end
 
 end

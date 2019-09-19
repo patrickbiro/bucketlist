@@ -1,0 +1,40 @@
+<main>
+  <section class="envelope">
+    <header class="text--center">
+      <h1 class="gamma">Edit user</h1>
+    </header>
+    <main>
+      <% if(@user.errors.any?) %>
+
+      <% end %>
+
+
+      <%= form_for(@user, html: { class: 'form--inpage' }) do |form| %>
+      <div class="input-group">
+        <%= form.label(:email, 'Email address', class: 'input-group__label') %>
+        <%= form.email_field(:email, class: 'input-group__field', placeholder: "e.g. me@epfl.ch")%>
+      </div>
+
+      <div class="input-group">
+        <%= form.label(:role, 'Password', class: 'input-group__label') %>
+        <%= form.select(:role, %w(registered admin), {}, class: 'input-group__field') %>
+      </div>
+
+      <div class="input-group">
+        <%= form.label(:name, class: 'input-group__label') %>
+        <%= form.text_field(:name, class: 'input-group__field')%>
+      </div>
+
+      <div class="input-group">
+        <%= form.label(:avatar_url, class: 'input-group__label') %>
+        <%= form.text_field(:avatar_url, class: 'input-group__field')%>
+      </div>
+
+      <div class="prompt">
+        <%= form.submit('Update user', class: 'btn btn--primary prompt__confirm') %>
+      </div>
+      <% end %>
+
+    </main>
+  </section>
+</main>

@@ -16,13 +16,14 @@
     <button class="btn delta" type="submit">
       <svg class="icon-delete" role="presentation">
         <use href="/images/icons-defs.svg#delete"></use>
+
       </svg>
       Remove
     </button>
     <% if(can_edit?(goal)) %>
       <a class="btn delta" href= <%= edit_idea_path(goal) %>>
         <svg class="icon-edit" role="presentation">
-          <use xlink:href="../icons/icons-defs.svg#edit"></use>
+          <use xlink:href=<%= image_url("ic_search_black_18px.svg")%>></use>
         </svg>
         Edit
       </a>
