@@ -20,7 +20,6 @@ class IdeasController < ApplicationController
 
   def show
 
-
     @display_add_comment = session[:user_id].present?
     @idea = Idea.find(params[:id])
     @comment = Comment.new
@@ -37,8 +36,8 @@ class IdeasController < ApplicationController
     user=current_user
     @idea = Idea.new(idea_resource_params)
     @idea.user = user
-    user.goals << @idea
     if(@idea.save)
+      user.goals << @idea
       redirect_to(account_goals_path)
     else
       render 'new'

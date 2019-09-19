@@ -2,7 +2,13 @@ require "application_system_test_case"
 
 class ShowIdeasTest < ApplicationSystemTestCase
   test 'that Idea are showed correctly' do #1 asertions
-    user= User.new email: 'patrick@epfl.ch', password: 'password'
+    User.all.delete_all
+    visit(new_user_path)
+    fill_in 'Email address', with: 'patrick@epfl.ch'
+    fill_in 'Password', with: 'password'
+    find(:button, 'Sign in').click
+
+    user= User.where("email = ?", "patrick@epfl.ch").first
     idea = Idea.new title:'Cycle across Australia', user: user
     idea.done_count = 1587
     idea.photo_url = ""

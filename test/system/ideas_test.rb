@@ -29,14 +29,25 @@ class IdeasTest < ApplicationSystemTestCase
   end
 
   test 'test idea edit' do
-    user= User.new email: 'patrick@epfl.ch', password: 'password'
+    visit(new_user_path)
+    fill_in 'Email address', with: 'patrick@epfl.ch'
+    fill_in 'Password', with: 'password'
+    find(:button, 'Sign in').click
+    user= User.where("email = ?", "patrick@epfl.ch").first
+
     idea = Idea.new title:'Title', user: user
     idea.save!
+    user.goals << idea
     visit(edit_idea_path(idea))
     fill_in 'idea_title', with: 'See the Matterhorn'
     fill_in 'idea_done_count', with: 159
+    assert page.has_content?('Edit idea')
     click_on 'Update Idea'
+    assert page.has_content?('My goals')
+    assert page.has_content?('See the Matterhorn')
+    
     click_on 'See the Matterhorn'
+
     assert page.has_content?('See the Matterhorn')
     assert page.has_content?('159 have done that')
 
@@ -86,8 +97,13 @@ class IdeasTest < ApplicationSystemTestCase
   end
 
   test 'Test validation critera for edition. Less than 75 char' do #4 asertions
+    visit(new_user_path)
+    fill_in 'Email address', with: 'patrick@epfl.ch'
+    fill_in 'Password', with: 'password'
+    find(:button, 'Sign in').click
+    user= User.where("email = ?", "patrick@epfl.ch").first
+
     Idea.all.delete_all
-    user= User.new email: 'patrick@epfl.ch', password: 'password'
     idea1 = Idea.new title:'Exciting idea 1', user: user
     idea1.save!
 
