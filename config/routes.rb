@@ -1,21 +1,23 @@
 Rails.application.routes.draw do
-
-  get 'account/ideas'
-  get 'account', to:'account#edit'
-  patch 'account', to:'account#update'
-  get 'account/goals', to: 'account#goals', as: 'account_goals'
-
   root to: 'home#index'
-
-  get 'home', to:'home#index'
-
-  get 'home/index'
 
   get 'styles/atoms'
 
   get 'styles/molecules'
 
   get 'styles/organisms'
+  get 'home', to:'home#index'
+
+  get 'home/index'
+
+
+
+  get 'account/ideas'
+  get 'account', to:'account#edit'
+  patch 'account', to:'account#update'
+  get 'account/goals', to: 'account#goals', as: 'account_goals'
+
+
 
 
   get 'styleguide', to:'styles#atoms'
