@@ -19,7 +19,7 @@
             <li>
               <a class="btn delta" href="<%= edit_idea_path(@idea) %>">
                 <svg class="icon-check icon--sm" role="presentation">
-                  <!-- <use xlink:href="images/icons-defs.svg#check"></use> -->
+                  <use href="<%= image_path('icons/icons-defs.svg') %>#edit"></use>
                 </svg>
                 Edit
 
@@ -31,7 +31,7 @@
                   <%= hidden_field_tag('idea_id', @idea.id) %>
                   <%= button_tag(class:"btn delta", type: 'submit', disabled: @disable_add_goal) do %>
                     <svg class="icon-heart icon--sm" role="presentation">
-                      <!-- <use xlink:href="images/icons-defs.svg#heart"></use> -->
+                      <use href="<%= image_path('icons/icons-defs.svg') %>#pluss"></use>
                     </svg>
                     Add
                   <% end %>
