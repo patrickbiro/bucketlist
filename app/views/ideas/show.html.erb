@@ -49,7 +49,7 @@
 
           </div>
           <div class="goal__meta">
-            <span>Created on <time datetime="2017-08-27T03:48"><%= @idea.created_at.strftime("%d %b %y") %></time></span>
+            <span>Created on <time datetime="2017-08-27T03:48"><%= time_ago_in_words(@idea.created_at)%></time></span>
             <span><%= @idea.done_count %> have done that</span>
             <span><a href="#comments">3 comments</a></span>
           </div>
@@ -73,7 +73,7 @@
       <h2 class="comments__title">Discussion <span>3 comments</span></h2>
 
       <% if(@display_add_comment) %>
-      <%= form_for([@idea, @comment], html: { class: 'comments__input' }) do |form| %>
+      <%= form_for([@idea, @comment], html: { class: 'comments__input' }, remote: true) do |form| %>
       <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
       <div class="input-group">
         <%= form.label(:body, 'Add comment', class: 'input-group__label') %>
@@ -83,12 +83,12 @@
       <% end %>
       <% end %>
 
-      <ul class="comments__listing">
+      <ul class="comments__listing" id="commentList">
         <% @idea.comments.each do |comment| %>
-        <li class="comment">
+        <li class="comment" id="idea-<%= @idea.id %>">
           <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
           <div class="comment__body">
-            <h3 class="comment__title">Tom Jenkinson <time datetime="2017-08-28T13:48"><%= comment.created_at.strftime("%d %b %y")%></time></h3>
+            <h3 class="comment__title"><%= comment.user.name %> <time datetime="2017-08-28T13:48"><%= time_ago_in_words(comment.created_at)%></time></h3>
             <p><%= comment.body %></p>
           </div>
         </li>
