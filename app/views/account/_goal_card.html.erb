@@ -1,10 +1,10 @@
 <div class="card">
   <div class="card__thumb">
     <%= link_to(idea_path(goal)) do %>
-    <% if(goal.photo_url.nil?) %>
-    <%= image_tag("http://fpoimg.com/255x170", alt: "a card image") %>
+    <% if(goal.photo_url.nil?||goal.photo_url.length==0) %>
+      <%= image_tag("http://fpoimg.com/255x170", alt: "a card image") %>
     <% else %>
-    <%= image_tag(goal.photo_url, alt: "a card image") %>
+      <%= image_tag(goal.photo_url, alt: "a card image") %>
     <% end %>
     <div class="card__intro">
       <h4 class="card__title"><%= goal.title %></h4>

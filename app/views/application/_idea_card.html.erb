@@ -1,7 +1,7 @@
 <div class="card" id="idea-<%= idea.id %>">
   <div class="card__thumb">
     <%= link_to(idea_path(idea)) do %>
-      <% if(idea.photo_url.nil?) %>
+      <% if(idea.photo_url.nil?||idea.photo_url.length==0) %>
         <%= image_tag("http://fpoimg.com/255x170", alt: "a card image") %>
       <% else %>
         <%= image_tag(idea.photo_url, alt: "a card image") %>
