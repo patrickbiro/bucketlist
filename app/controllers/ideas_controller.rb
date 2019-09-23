@@ -2,8 +2,8 @@ class IdeasController < ApplicationController
   include RolesHelper
 
   before_action :ensure_authenticated, only: [:edit, :update, :new, :create]
-  before_action :load_idea,         only: [:edit, :update]
-  before_action :authorize_to_edit_idea,         only: [:edit, :update]
+  before_action :load_idea,         only: [:edit, :update, :destroy]
+  before_action :authorize_to_edit_idea,         only: [:edit, :update, :destroy]
 
 
   def index
@@ -54,7 +54,10 @@ class IdeasController < ApplicationController
     else
       render 'edit'
     end
+  end
 
+  def destroy
+    @idea.destroy!
   end
 
   def load_idea
