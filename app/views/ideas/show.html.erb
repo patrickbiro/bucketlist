@@ -25,9 +25,9 @@
 
               </a>
             </li>
-            <% if(@user.present?) %>
+            <% if(logged_in?) %>
               <li>
-                <%= form_tag(user_goals_path(@user)) do %>
+                <%= form_tag(user_goals_path(current_user)) do %>
                   <%= hidden_field_tag('idea_id', @idea.id) %>
                   <%= button_tag(class:"btn delta", type: 'submit', disabled: @disable_add_goal) do %>
                     <svg class="icon-heart icon--sm" role="presentation">
@@ -88,7 +88,13 @@
         <li class="comment" id="idea-<%= @idea.id %>">
           <%= image_tag('avatar.png', class: 'avatar', alt: "Anonyme user") %>
           <div class="comment__body">
-            <h3 class="comment__title"><%= comment.user.name %> <time datetime="2017-08-28T13:48"><%= time_ago_in_words(comment.created_at)%></time></h3>
+            <h3 class="comment__title">
+              <% if(comment.user.name.nil? || comment.user.name.length == 0) %>
+                Anonymous
+              <% else %>
+                <%= comment.user.name %>
+              <% end %>
+              <time datetime="2017-08-28T13:48"><%= time_ago_in_words(comment.created_at)%></time></h3>
             <p><%= comment.body %></p>
           </div>
         </li>

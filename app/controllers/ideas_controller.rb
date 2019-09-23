@@ -24,8 +24,8 @@ class IdeasController < ApplicationController
     @idea = Idea.find(params[:id])
     @comment = Comment.new
 
-    if (session[:user_id].present?)
-      @user=User.find(session[:user_id])
+    if (logged_in?)
+      @user=current_user
       @disable_add_goal = @user.goals.exists?(@idea.id)
     else
       @user=nil
