@@ -60,6 +60,8 @@ class IdeasController < ApplicationController
     @idea.destroy!
   end
 
+  private
+
   def load_idea
     @idea = Idea.find(params[:id])
   end
@@ -69,14 +71,11 @@ class IdeasController < ApplicationController
     redirect_to(account_path) unless(can_edit?(@idea))
   end
 
-  private
-
-
   #Needed by the hierarchy of the form resource
   def idea_resource_params
     params.require(:idea).permit(
       :title, :photo_url, :done_count, :description)
-    end
+  end
 
 
   end
