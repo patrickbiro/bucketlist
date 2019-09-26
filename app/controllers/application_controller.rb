@@ -9,11 +9,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    if @current_user.present?
-      return @current_user
+    if logged_in?
+      @current_user = User.find(session[:user_id])
+      if @current_user.present?
+        return @current_user
+      end
     end
 
-    @current_user = User.find(session[:user_id])
   end
 
   def ensure_authenticated
