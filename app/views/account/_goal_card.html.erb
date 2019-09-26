@@ -13,12 +13,13 @@
     <% end %>
   </div>
   <div class="card__footer">
-    <button class="btn delta" type="submit">
-      <svg class="icon-edit" role="presentation">
+    <%= link_to(user_goal_path(current_user, goal), class: 'btn delta', method: :delete, remote: false) do %>
+      <svg class="icon-delete" role="presentation">
         <use href="<%= image_path('icons/icons-defs.svg') %>#delete"></use>
       </svg>
-      Remove
-    </button>
+      Remove goal
+    <% end %>
+
     <% if(can_edit?(goal)) %>
     <a class="btn delta" href= <%= edit_idea_path(goal) %>>
       <svg class="icon-edit" role="presentation">
