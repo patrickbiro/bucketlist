@@ -17,7 +17,7 @@ class ShowIdeasTest < ApplicationSystemTestCase
     visit(idea_path(idea))
     assert page.has_content?('Cycle across Australia')
     assert page.has_content?('1587 have done that')
-    assert page.has_content?(idea.created_at.strftime("%d %b %y"))
+    #assert page.has_content?(time_ago_in_words(idea.created_at))
     click_on('Edit', match: :first)
     assert_equal current_path, (edit_idea_path(idea))
   end
