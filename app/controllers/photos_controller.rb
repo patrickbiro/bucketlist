@@ -13,7 +13,14 @@ class PhotosController < ApplicationController
   end
 
   def index
-    @photo = Unsplash::Photo.random(query: @idea.title)
+    query = params[:query]
+    query = @idea.title if (query.blank?)
+    begin
+      @photo = Unsplash::Photo.random(query: query, count: 5)
+    rescue => exception
+      @error = "#{exception.message}"
+    end
+
   end
 
   private

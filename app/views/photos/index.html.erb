@@ -6,23 +6,40 @@
         <li><a href="#nolink" class="current">Photos</a></li>
       </ul>
     </nav>
+
     <h1>Suggested</h1>
     <div class="content-wrapper">
-      <ul class="bare-list float-grid css-grid">
-        <li>
-          <div class="card">
-            <div class="card__thumb">
-              <img src='<%= @photo.urls.regular %>'></img>
-            </div>
+      <%= form_tag(idea_photos_path(@idea), method: :get, class: "form--inpage") do %>
+        <div class="input-inline">
+          <%= label(:query, nil, 'Change search term', class: 'input-group__label') %>
+          <div class="input-row">
+            <%= text_field_tag(:query, nil, class: 'input-row__field', placeholder: "e.g. something linked with your idea")%>
+            <%= submit_tag('Go', class: 'btn btn--primary btn--inline') %>
           </div>
-          <%= form_tag(idea_photos_path(@idea)) do %>
-            <div class="prompt">
-              <%= hidden_field_tag(:photo_url, @photo.urls.regular) %>
-              <%= submit_tag('Use this photo', class:"btn btn--primary prompt__confirm") %>
-            </div>
+        </div>
+      <% end %>
+      <ul class="bare-list float-grid css-grid">
+        <% if(@error.nil?) %>
+          <% @photo.each do |photo| %>
+            <li>
+              <div class="card">
+                <div class="card__thumb">
+                  <img src='<%= photo.urls.regular %>'></img>
+                </div>
+              </div>
+              <%= form_tag(idea_photos_path(@idea)) do %>
+              <div class="prompt">
+                <%= hidden_field_tag(:photo_url, photo.urls.regular) %>
+                <%= submit_tag('Use this photo', class:"btn btn--primary prompt__confirm") %>
+              </div>
+              <% end %>
+              <p>Photo taken by <%= photo.user.name %>, available at <%= link_to('unsplash.com', photo.links.html)%> </p>
+            </li>
           <% end %>
-          <p>Photo taken by <%= @photo.user.name %>, available at <a href="https://unsplash.com">unsplash.com</a></p>
-        </li>
+        <% else %>
+          <h2> <%= @error %> </h2>
+        <% end %>
+
       </ul>
     </div>
   </div>
