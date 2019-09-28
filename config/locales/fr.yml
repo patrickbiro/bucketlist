@@ -1,0 +1,12 @@
+en:
+  inspiration: 'Inspiration'
+  sign_up: 'Inscription'
+  log_in: "S'identifer"
+  log_out: 'Déconnexion'
+  my_account: "Mon compte"
+  helpers:
+    label:
+      user:
+        email: 'Email'
+        name: 'Nom'
+        avatar: 'Photo de profile'

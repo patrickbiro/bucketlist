@@ -1,13 +1,13 @@
 <nav class="site-header__nav">
   <ul class="main-navigation">
-    <li><a href="#nolink">Inspiration</a></li>
+    <li><a href="#nolink"><%= translate('inspiration') %></a></li>
     <%= render(partial: 'styles/sub_nav_item', locals: {
-      title: "Sign up",
+      title: translate('sign_up'),
       uri: new_user_path,
       current: false
     }) %>
     <%= render(partial: 'styles/sub_nav_item', locals: {
-      title: "Log in",
+      title: translate('log_in'),
       uri: new_session_path,
       current: false
     }) %>
