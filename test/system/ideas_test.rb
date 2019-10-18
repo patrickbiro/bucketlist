@@ -45,7 +45,7 @@ class IdeasTest < ApplicationSystemTestCase
     click_on 'Update Idea'
     assert page.has_content?('My goals')
     assert page.has_content?('See the Matterhorn')
-    
+
     click_on 'See the Matterhorn'
 
     assert page.has_content?('See the Matterhorn')

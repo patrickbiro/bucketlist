@@ -7,11 +7,17 @@ class ApplicationController < ActionController::Base
 
 
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    logger.debug "params locale: #{params[:locale]}\n".green
+    logger.debug "session locale before: #{session[:locale]}\n".green
+
+    I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
+    session[:locale] = I18n.locale
+    logger.debug "session locale after: #{session[:locale]}\n".green
   end
 
   def default_url_options
-    { locale: I18n.locale }
+    logger.debug "default_url_options is passed options: #{I18n.locale}\n".blue
+    { :locale => ((I18n.locale == I18n.default_locale) ? nil : I18n.locale) }
   end
 
   def logged_in?
@@ -33,5 +39,6 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path
     end
   end
+
 
 end
