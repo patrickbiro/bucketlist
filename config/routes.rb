@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   root to: 'home#index'
-  scope '/:locale' do
+  #scope "/:locale", locale: /#{I18n.available_locales.join("|")}/, defaults: {locale: "en"} do
+  #scope '/:locale' do
+  scope "(:locale)", :locale => /fr|de/  do
     root to: 'home#index'
     get 'styles/atoms'
 
