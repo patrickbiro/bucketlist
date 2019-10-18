@@ -38,7 +38,7 @@ class IdeasTest < ApplicationSystemTestCase
     idea = Idea.new title:'Title', user: user
     idea.save!
     user.goals << idea
-    visit(edit_idea_path(idea))
+    visit(edit_idea_path(idea, locale: :en))
     fill_in 'idea_title', with: 'See the Matterhorn'
     fill_in 'idea_done_count', with: 159
     assert page.has_content?('Edit idea')
@@ -107,7 +107,7 @@ class IdeasTest < ApplicationSystemTestCase
     idea1 = Idea.new title:'Exciting idea 1', user: user
     idea1.save!
 
-    visit(edit_idea_path(idea1))
+    visit(edit_idea_path(idea1, locale: :en))
     fill_in 'idea_title', with: 'Add a section in the app/views/ideas/_form.html.erb partial that will display all error associated with a failed save. An HTML fragment has been provided in the resources section of this unit as a template. Make use of the #join method to separate each error with a <br /> element.'
     click_on 'Update Idea'
     assert page.has_content?('Title is too long (maximum is 75 characters)')

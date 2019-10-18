@@ -7,16 +7,13 @@ class ApplicationController < ActionController::Base
 
 
   def set_locale
-    logger.debug "params locale: #{params[:locale]}\n".green
-    logger.debug "session locale before: #{session[:locale]}\n".green
-
+    logger.debug "params locale: #{params[:locale]}\n"
     I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale
-    logger.debug "session locale after: #{session[:locale]}\n".green
   end
 
   def default_url_options
-    logger.debug "default_url_options is passed options: #{I18n.locale}\n".blue
+    logger.debug "default_url_options is passed options: #{I18n.locale}\n"
     { :locale => ((I18n.locale == I18n.default_locale) ? nil : I18n.locale) }
   end
 
