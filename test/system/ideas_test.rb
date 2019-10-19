@@ -82,7 +82,7 @@ class IdeasTest < ApplicationSystemTestCase
   end
 
   test 'Test validation critera for idea creation. Less than 75 char' do #4 asertions
-
+    sleep(5.seconds)
     visit(new_user_path)
     fill_in 'Email address', with: 'patrick@epfl.ch'
     fill_in 'Password', with: 'password'

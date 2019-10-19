@@ -14,11 +14,11 @@ class ShowIdeasTest < ApplicationSystemTestCase
     idea.photo_url = ""
     idea.save!
 
-    visit(idea_path(idea))
+    visit(idea_path(idea, locale: :en))
     assert page.has_content?('Cycle across Australia')
     assert page.has_content?('1587 have done that')
     #assert page.has_content?(time_ago_in_words(idea.created_at))
     click_on('Edit', match: :first)
-    assert_equal current_path, (edit_idea_path(idea))
+    assert_equal "/en#{current_path}", (edit_idea_path(idea, locale: :en))
   end
 end
