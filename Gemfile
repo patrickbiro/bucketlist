@@ -10,8 +10,6 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -45,6 +43,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'webdrivers', '~>4.0'
   gem 'awesome_print'
+  # Use sqlite3 as the database for Active Record in dev and test
+  gem 'sqlite3'
 end
 
 group :development do
